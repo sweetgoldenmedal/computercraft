@@ -1,7 +1,7 @@
 -- argument processing
 local args = {...}
 
-if #args ~= 2 then
+if #args ~= 3 then
     print( "Usage: build_garden <garden_name> <garden_width> <garden_length>" )
     print( "Note: turtle should face north when beginning to build" )
     return
@@ -81,6 +81,8 @@ print("checking garden dimensions:")
 if not check_garden_dimensions( garden_width, garden_length ) then
 	return
 end
+
+print("garden dimensions are acceptable")
 
 
 
