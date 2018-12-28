@@ -45,27 +45,32 @@ end
 
 -- build the fence to enclode garden_width x garden_height
 local function build_fence(name, width, length)
-	-- two steps back, place a sign
+	-- two steps back, place a sign then get back to the starting point
+	print("placing sign")
 	turtle.back()
 	turtle.back()
 	turtle.select(find_sign())
 	turtle.place(name)
+	turtle.forward()
+	turtle.forward()
 
-	-- two steps forward and start laying fence
-	turtle.forward()
-	turtle.forward()
+	-- then a bunch of temporary hacky stuff to get us into position for building the fence from the right side
+	print("getting into start position")
 	turtle.turnRight()
 	turtle.forward()
 	turtle.turnLeft()
 	turtle.forward()
 	turtle.turnLeft()
+
+
+	print("beginning first build loop")
 	for i=1,length+1 do
 		turtle.select(find_block("fence"))
 		turtle.place()			
+		turtle.turnRight()
 		turtle.forward()
+		turtle.turnLeft()
 	end
-
-	-- turn right
 end
 
 -- find block based on string argument
