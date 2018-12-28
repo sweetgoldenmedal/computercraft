@@ -96,23 +96,7 @@ end
 
 print("garden dimensions are acceptable")
 
-print("checking for a fence block")
-if find_block("fence") then
-	print("we found a fence block")
-else
-	print("no fence block found")
-end
-
-
-print("checking for a sign block")
-if find_block("sign") then
-	print("we found a sign block")
-else
-	print("no fence sign found")
-end
-
-
---build_fence( garden_name, garden_width, garden_length )
+build_fence( garden_name, garden_width, garden_length )
 
 
 
