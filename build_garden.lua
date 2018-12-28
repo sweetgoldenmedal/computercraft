@@ -68,26 +68,13 @@ local function build_fence(name, width, length)
 	-- turn right
 end
 
--- find a sign in your inventory
-local function find_sign()
-	for n=1,16 do
-		local return_value , blockdata = turtle.getItemDetail(n) 
-		if(string.match(blockdata.name, 'sign')) then                                                                                    
-			return n
-		end
-	end	
-end
-
 -- find block based on string argument
 local function find_block(blockName)
 	for n=1,16 do
 		if turtle.getItemCount(n) ~= 0 then
-			print("there is something in slot: "..n.." getting detail now")
 			local itemDetails = turtle.getItemDetail(n) 
 			if(string.match(itemDetails.name, blockName)) then
 				return n
-			else
-				print("the item in slot: "..n.." does not appear to be a: "..blockName)
 			end
 		end
 	end
