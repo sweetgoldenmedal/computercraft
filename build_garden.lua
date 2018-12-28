@@ -7,8 +7,8 @@ if #args ~= 3 then
     return
 end
 
-local garden_width = args[1] or 15
-local garden_length = args[2] or 15
+local garden_width = tonumber(args[1]) or 15
+local garden_length = tonumber(args[2]) or 15
 
 local xpos = 0
 local ypos = 0
@@ -35,17 +35,22 @@ local function supply_check(garden_diameter)
 end
 
 -- build the fence to enclode garden_width x garden_height
-local function build_fence(garden_width, garden_length)
+local function build_fence(name, width, length)
 	-- two steps back, place a sign
 	turtle.back()
 	turtle.back()
 	turtle.select(find_sign())
-	turtle.place(garden_name)
+	turtle.place(name)
 
 	-- two steps forward and start laying fence
 	turtle.forward()
 	turtle.forward()
-	for i=1,garden_length+1 do
+	turtle.turnRight()
+	turtle.forward()
+	turtle.turnLeft()
+	turtle.forward()
+	turtle.turnLeft()
+	for i=1,length+1 do
 		turtle.select(find_block("fence"))
 		turtle.place()			
 		turtle.forward()
@@ -83,7 +88,12 @@ if not check_garden_dimensions( garden_width, garden_length ) then
 end
 
 print("garden dimensions are acceptable")
-
+if find_block("fence") then
+	print("we found a fence block")
+else
+	print("no fence block found")
+end
+--build_fence( garden_name, garden_width, garden_length )
 
 
 
