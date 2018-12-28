@@ -79,15 +79,15 @@ local function find_sign()
 end
 
 -- find block based on string argument
-local function find_block(block_name)
+local function find_block(blockName)
 	for n=1,16 do
 		if turtle.getItemCount(n) ~= 0 then
 			print("there is something in slot: "..n.." getting detail now")
-			local return_value , blockdata = turtle.getItemDetail(n) 
-			if( string.match(blockdata.name, block_name) ) then
+			local itemDetails = turtle.getItemDetail(n) 
+			if(string.match(itemDetails.name, blockName)) then
 				return n
 			else
-				print("the item in slot: "..n.." does not appear to be a: "..block_name)
+				print("the item in slot: "..n.." does not appear to be a: "..blockName)
 			end
 		end
 	end
