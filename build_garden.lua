@@ -17,7 +17,7 @@ local xpos = 0
 local ypos = 0
 local facing_direction = 'n' 
 
-if DEBUG then
+if (DEBUG) then
 	print("garden_name is: "..garden_name)
 	print("garden_width is: "..garden_width)
 	print("garden_length is: "..garden_length)
