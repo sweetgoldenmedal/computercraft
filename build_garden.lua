@@ -49,7 +49,7 @@ local function build_fence(name, width, length)
 	print("placing sign")
 	turtle.back()
 	turtle.back()
-	turtle.select(find_sign())
+	turtle.select(findBlockByName("sign"))
 	turtle.place(name)
 	turtle.forward()
 	turtle.forward()
@@ -65,7 +65,7 @@ local function build_fence(name, width, length)
 
 	print("beginning first build loop")
 	for i=1,length+1 do
-		turtle.select(find_block("fence"))
+		turtle.select(findBlockByName("fence"))
 		turtle.place()			
 		turtle.turnRight()
 		turtle.forward()
@@ -74,7 +74,7 @@ local function build_fence(name, width, length)
 end
 
 -- find block based on string argument
-local function find_block(blockName)
+local function findBlockByName(blockName)
 	for n=1,16 do
 		if turtle.getItemCount(n) ~= 0 then
 			local itemDetails = turtle.getItemDetail(n) 
