@@ -14,15 +14,18 @@ local xpos = 0
 local ypos = 0
 local facing_direction = 'n' 
 
+print("garden_width is: "..garden_width)
+print("garden_length is: "..garden_length)
+
 -- check to ensure that the garden size is viable
 -- garden_width should be positive and greater than 3
 -- garden_length must be positive and greater than 0
-local function check_garden_dimensions (garden_width, garden_length)
-    if( garden_width < 3 ) then
+local function check_garden_dimensions ( width, length )
+    if( width < 3 ) then
 		print("Garden width must be greater than 3")
 		return false
     end
-    if ( garden_length < 1 ) then
+    if ( length < 1 ) then
 		print("Garden length must be greater than 1")
 		return false
 	end
