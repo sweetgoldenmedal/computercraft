@@ -17,8 +17,11 @@ local xpos = 0
 local ypos = 0
 local facing_direction = 'n' 
 
-print("garden_width is: "..garden_width)
-print("garden_length is: "..garden_length)
+if DEBUG 
+	print("garden_name is: "..garden_name)
+	print("garden_width is: "..garden_width)
+	print("garden_length is: "..garden_length)
+end
 
 -- check to ensure that the garden size is viable
 -- garden_width should be positive and greater than 3
