@@ -7,8 +7,9 @@ if #args ~= 3 then
     return
 end
 
-local garden_width = tonumber(args[1]) or 15
-local garden_length = tonumber(args[2]) or 15
+local garden_name = tonumber(args[1]) or 15
+local garden_width = tonumber(args[2]) or 15
+local garden_length = tonumber(args[3]) or 15
 
 local xpos = 0
 local ypos = 0
