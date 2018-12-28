@@ -1,3 +1,5 @@
+DEBUG = true
+
 -- argument processing
 local args = {...}
 
@@ -77,6 +79,7 @@ end
 local function find_block(block_name)
 	for n=1,16 do
 		if turtle.getItemCount(n) ~= 0 then
+			if DEBUG print("there is something in slot: "..n.." getting detail now")
 			local return_value , blockdata = turtle.getItemDetail(n) 
 			if( string.match(blockdata.name, block_name) ) then
 				return n
