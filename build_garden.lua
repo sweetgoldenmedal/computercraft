@@ -7,8 +7,8 @@ if #args ~= 2 then
     return
 end
 
-garden_width = args[1] or 15
-garden_length = args[2] or 15
+local garden_width = args[1] or 15
+local garden_length = args[2] or 15
 
 local xpos = 0
 local ypos = 0
@@ -78,7 +78,8 @@ end
 -- START
 
 print("checking garden dimensions:")
-if not check_dimensions( garden_width, garden_length ) then
+if not check_garden_dimensions( garden_width, garden_length ) then
+	return
 end
 
 
