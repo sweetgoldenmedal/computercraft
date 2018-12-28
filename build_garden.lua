@@ -72,11 +72,14 @@ end
 -- find block based on string argument
 local function find_block(block_name)
 	for n=1,16 do
-		local return_value , blockdata = turtle.getItemDetail(n) 
-		if(string.match(blockdata.name, block_name)) then                                                                                    
-			return n
+		if turtle.getItemCount(n) ~= 0 then
+			local return_value , blockdata = turtle.getItemDetail(n) 
+			if( string.match(blockdata.name, block_name) ) then
+				return n
+			end
 		end
 	end
+	return false
 end
 
 
