@@ -74,7 +74,7 @@ local function build_fence(name, width, length)
 end
 
 -- find block based on string argument
-local function findBlockByName(blockName)
+function findBlockByName(blockName)
 	for n=1,16 do
 		if turtle.getItemCount(n) ~= 0 then
 			local itemDetails = turtle.getItemDetail(n) 
@@ -83,7 +83,8 @@ local function findBlockByName(blockName)
 			end
 		end
 	end
-	return false
+	print("A block matching: "..blockName.." was not found")
+	return 0
 end
 
 
