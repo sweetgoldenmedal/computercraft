@@ -17,9 +17,9 @@ local silent = false
 
 local preset = {
     -- The GitHub account name
-    user = nil,
+    user = "sweetgoldenmedal",
     -- The GitHub repository name
-    repo = nil,
+    repo = "computercraft",
 
     -- The branch or commit tree to download (defaults to 'master')
     branch = nil,
