@@ -43,19 +43,52 @@ local function supply_check(garden_diameter)
     textutils.slowPrint("Calculating supplies needed to build a garden that is "..garden_width.." x "..garden_length.." in diameter")
 end
 
--- build the fence to enclode garden_width x garden_height
-local function build_fence(name, width, length)
-	-- two steps back, place a sign then get back to the starting point
-	print("placing sign")
-	turtle.back()
-	turtle.back()
-	turtle.select(findBlockByName("sign"))
-	turtle.place(name)
-	turtle.forward()
-	turtle.forward()
+function moveBack(moveCount)
+	if DEBUG then print("executing moveBack function")
+	for n=0,moveCount do
+		-- spatial tracking goes here
+		turtle.back()
+	end
+	return true
+end
 
-	-- then a bunch of temporary hacky stuff to get us into position for building the fence from the right side
+function moveForward(moveCount)
+	for n=0,moveCount do
+		-- spatial tracking goes here
+		turtle.forward()
+	end
+	return true
+end
+
+function turnLeft(turnCount=1) 
+	for n=0,turnCount do
+		-- spatial tracking goes here
+		turtle.turnLeft()
+	end
+	return true
+end
+
+function turnRight() 
+	for n=0,turnCount do
+		-- spatial tracking goes here
+		turtle.turnRight()
+	end
+	return true
+end
+
+function place_sign(gardenName)
+	print("placing sign with name: "..gardenName)
+	moveBack(2)
+	turtle.select(findBlockByName("sign"))
+	turtle.place(gardenName)
+	moveForward(2)
+end
+
+-- build the fence to enclode garden_width x garden_height
+function build_left_fence(name, width, length)
 	print("getting into start position")
+	moveForward(2)
+	turnLeft()
 	turtle.turnRight()
 	turtle.forward()
 	turtle.turnLeft()
@@ -70,11 +103,11 @@ local function build_fence(name, width, length)
 		turtle.turnRight()
 		turtle.forward()
 	end
-
 	turtle.back()
 	turtle.back()
+end
 
-	print("beginning far side build loop")
+function build_back_fence(name,width,length)
 	for i=1,length+1 do
 		turtle.select(findBlockByName("fence"))
 		turtle.place()			
@@ -82,8 +115,6 @@ local function build_fence(name, width, length)
 		turtle.forward()
 		turtle.turnLeft()
 	end
-
-
 end
 
 -- find block based on string argument
@@ -110,7 +141,11 @@ end
 
 print("garden dimensions are acceptable")
 
-build_fence( garden_name, garden_width, garden_length )
+place_sign(garden_name)
+build_left_fence( garden_name, garden_width, garden_length )
+--build_back_fence( garden_name, garden_width, garden_length )
+--build_right_fence( garden_name, garden_width, garden_length )
+--build_front_fence( garden_name, garden_width, garden_length )
 
 
 
