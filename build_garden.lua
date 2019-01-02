@@ -44,7 +44,7 @@ local function supply_check(garden_diameter)
 end
 
 function moveBack(moveCount)
-	if DEBUG then print("executing moveBack function")
+	if DEBUG then print("executing moveBack function") end
 	for n=0,moveCount do
 		-- spatial tracking goes here
 		turtle.back()
@@ -53,7 +53,7 @@ function moveBack(moveCount)
 end
 
 function moveForward(moveCount)
-	if DEBUG then print("executing moveForward function")
+	if DEBUG then print("executing moveForward function") end
 	for n=0,moveCount do
 		-- spatial tracking goes here
 		turtle.forward()
@@ -62,14 +62,14 @@ function moveForward(moveCount)
 end
 
 function turnLeft()
-	if DEBUG then print("executing turnLeft function")
+	if DEBUG then print("executing turnLeft function") end
 	-- spatial tracking goes here
 	turtle.turnLeft()
 	return true
 end
 
 function turnRight()
-	if DEBUG then print("executing turnRight function")
+	if DEBUG then print("executing turnRight function") end
 		-- spatial tracking goes here
 	turtle.turnRight()
 	return true
