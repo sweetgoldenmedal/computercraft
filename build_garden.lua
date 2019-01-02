@@ -53,6 +53,7 @@ function moveBack(moveCount)
 end
 
 function moveForward(moveCount)
+	if DEBUG then print("executing moveForward function")
 	for n=0,moveCount do
 		-- spatial tracking goes here
 		turtle.forward()
@@ -60,19 +61,17 @@ function moveForward(moveCount)
 	return true
 end
 
-function turnLeft(turnCount=1) 
-	for n=0,turnCount do
-		-- spatial tracking goes here
-		turtle.turnLeft()
-	end
+function turnLeft()
+	if DEBUG then print("executing turnLeft function")
+	-- spatial tracking goes here
+	turtle.turnLeft()
 	return true
 end
 
-function turnRight() 
-	for n=0,turnCount do
+function turnRight()
+	if DEBUG then print("executing turnRight function")
 		-- spatial tracking goes here
-		turtle.turnRight()
-	end
+	turtle.turnRight()
 	return true
 end
 
