@@ -3,15 +3,14 @@ local DEBUG = true
 -- argument processing
 local args = {...}
 
-if #args ~= 3 then
-    print( "Usage: build_garden <garden_name> <garden_width> <garden_length>" )
+if #args ~= 2 then
+    print( "Usage: build_garden <garden_name> <side_length>" )
     print( "Note: turtle should face north when beginning to build" )
     return
 end
 
 local garden_name = args[1] or "default_garden"
-local garden_width = tonumber(args[2]) or 15
-local garden_length = tonumber(args[3]) or 15
+local side_length = tonumber(args[2]) or 15
 
 local xpos = 0
 local ypos = 0
@@ -19,34 +18,18 @@ local facing_direction = 'n'
 
 if DEBUG then
 	print("garden_name is: "..garden_name)
-	print("garden_width is: "..garden_width)
-	print("garden_length is: "..garden_length)
-end
-
--- check to ensure that the garden size is viable
--- garden_width should be positive and greater than 3
--- garden_length must be positive and greater than 0
-local function check_garden_dimensions ( width, length )
-    if( width < 3 ) then
-		print("Garden width must be greater than 3")
-		return false
-    end
-    if ( length < 1 ) then
-		print("Garden length must be greater than 1")
-		return false
-	end
-    return true
+	print("side_length is: "..side_length)
 end
 
 -- this function should check the inventory to ensure there are enough raw materials to make a garden of the specified size
-local function supply_check(garden_diameter)
-    textutils.slowPrint("Calculating supplies needed to build a garden that is "..garden_width.." x "..garden_length.." in diameter")
+local function supply_check()
+    --textutils.slowPrint("Calculating supplies needed to build a garden that is "..garden_width.." x "..garden_length.." in diameter")
 end
 
 function moveBack(moveCount)
 	if DEBUG then print("executing moveBack function") end
 	for n=1,moveCount do
-		-- spatial tracking goes here
+		ypos = ypos - 1
 		turtle.back()
 	end
 	return true
@@ -55,7 +38,7 @@ end
 function moveForward(moveCount)
 	if DEBUG then print("executing moveForward function") end
 	for n=1,moveCount do
-		-- spatial tracking goes here
+		ypos = ypos - 1
 		print("n == "..n)
 		turtle.forward()
 	end
@@ -91,23 +74,23 @@ function place_sign(gardenName)
 end
 
 -- build the fence to enclode garden_width x garden_height
-function build_left_fence(name, width, length)
+function build_fence(side_length)
     -- get in position
 	moveForward(1)
 	turnLeft()
 	turnLeft()
-	generic_fence_loop(length)
-    build_corner()
-end
-
-function build_back_fence(length)
-	-- get inside for the final fence post
-	turnRight()
-	moveBack(1)
-    generic_fence_loop(length)
+	generic_fence_loop(side_length)
+	insideCorner()
+	generic_fence_loop(side_length)
+	insideCorner()
+	generic_fence_loop(side_length)
+	insideCorner()
+	generic_fence_loop(side_length)
 end
 
 function generic_fence_loop(length)
+	turtle.select(findBlockByName("fence"))
+	turtle.place()
 	for i=1,length-1 do
 		moveBack(1)
 		turtle.select(findBlockByName("fence"))
@@ -115,11 +98,13 @@ function generic_fence_loop(length)
 	end
 end
 
-function build_corner ()
+function insideCorner()
+	-- get inside for the final fence post
 	turnRight()
 	moveBack(1)
-	turtle.select(findBlockByName("fence"))
-	turtle.place()
+	turnLeft()
+	moveForward(1)
+	turnRight()
 end
 
 -- find block based on string argument
@@ -139,17 +124,8 @@ end
 
 -- START
 
-print("checking garden dimensions:")
-if not check_garden_dimensions( garden_width, garden_length ) then
-	return
-end
-
-print("garden dimensions are acceptable")
-
 place_sign(garden_name)
-build_left_fence( garden_name, garden_width, garden_length )
-build_back_fence( garden_width )
---build_right_fence( garden_name, garden_width, garden_length )
---build_front_fence( garden_name, garden_width, garden_length )
+build_fence( side_length )
+print("done")
 
 
