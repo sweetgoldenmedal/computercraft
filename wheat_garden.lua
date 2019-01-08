@@ -1,3 +1,4 @@
+DEBUG = 1
 -- load up the libraries
 os.loadAPI("lib/movement")
 os.loadAPI("lib/inventory")
