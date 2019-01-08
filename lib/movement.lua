@@ -1,3 +1,4 @@
+DEBUG = 1
 starting_xpos, xpos = 0,0
 starting_zpos, zpos = 0,0
 xdir = 0

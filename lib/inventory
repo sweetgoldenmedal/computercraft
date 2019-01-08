@@ -8,5 +8,5 @@ function findBlockByNameMatch(blockName)
         end
     end
     print("A block matching: "..blockName.." was not found")
-    return 0
+    return false
 end
