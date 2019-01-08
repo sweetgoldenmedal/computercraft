@@ -102,12 +102,10 @@ local function checkBlock() -- conditionally harvest or plant the block
                     if DEBUG then print("The wheat is not age 7, skipping...") end
                 end
             end
-        else
-            plantBlock()
         end
     else
-        if DEBUG then print("turtle.detect() didn't find anything") end
-        return false
+        if DEBUG then print("turtle.detect() didn't find anything, planting now...") end
+        plantBlock()
     end 
 end
 
