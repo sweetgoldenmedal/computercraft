@@ -1,3 +1,8 @@
+starting_xpos, xpos = 0,0
+starting_zpos, zpos = 0,0
+xdir = 0
+zdir = 1
+
 function moveBack()
     if DEBUG then print("executing moveBack function") end
     xpos = xpos + xdir

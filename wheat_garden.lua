@@ -3,10 +3,10 @@ DEBUG = 1
 os.loadAPI("lib/movement")
 os.loadAPI("lib/inventory")
 
-starting_xpos, xpos = 0,0
-starting_zpos, zpos = 0,0
-xdir = 0
-zdir = 1
+--starting_xpos, xpos = 0,0
+--starting_zpos, zpos = 0,0
+--xdir = 0
+--zdir = 1
 
 local function colReturn() -- return to the beginning of the column and attempt to move to the next column
     while(zdir ~= -1) do
