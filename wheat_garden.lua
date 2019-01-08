@@ -41,6 +41,7 @@ function turnRight()
 end
 
 local function colReturn() -- return to the beginning of the column and attempt to move to the next column
+    if DEBUG then print("function: colReturn()") end
     while(zdir ~= -1) do
         turnRight()
     end
@@ -51,6 +52,7 @@ local function colReturn() -- return to the beginning of the column and attempt 
 end
 
 local function rowReturn()
+    if DEBUG then print("function: rowReturn()") end
     while(xdir ~= -1) do
         turnRight()
     end
@@ -60,6 +62,7 @@ local function rowReturn()
 end
 
 local function moveToNextCol() -- pathways are 3 blocks apart
+    if DEBUG then print("function: moveToNextCol()") end
     while(xdir ~= 1) do
         turnLeft()
     end
@@ -71,6 +74,7 @@ local function moveToNextCol() -- pathways are 3 blocks apart
 end
 
 local function moveToNextBlock()  -- move z+1 and turn to face the new block
+    if DEBUG then print("function: moveToNextBlock()") end
     while(zdir ~= 1) do
         turnLeft()
     end
@@ -81,6 +85,7 @@ local function moveToNextBlock()  -- move z+1 and turn to face the new block
 end
 
 local function checkBlock() -- conditionally harvest or plant the block
+    if DEBUG then print("function: checkBlock()") end
     if(turtle.detect()) then
         local return_value , blockdata = turtle.inspect()
         if(return_value == true) then
@@ -97,17 +102,20 @@ local function checkBlock() -- conditionally harvest or plant the block
 end
 
 local function harvestBlock() -- largely redundant function (could just use plantBlock()), but it makes the logic more understandable I think
+    if DEBUG then print("function: harvestBlock()") end
     turtle.dig() -- harvest the existing wheat
     plantBlock()
 end
 
 local function plantBlock()
+    if DEBUG then print("function: plantBlock()") end
     turtle.dig()
     inventory.findBlockByNameMatch("wheat")
     turtle.place()
 end
 
 local function harvestColumn()
+    if DEBUG then print("function: harvestColumn()") end
     moveToNextBlock()
     checkBlock()
 end
