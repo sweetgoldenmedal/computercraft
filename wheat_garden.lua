@@ -120,7 +120,17 @@ local function harvestColumn()
     checkBlock()
 end
 
-while(inventory.findBlockByNameMatch("seeds")) do
-    harvestColumn()
-    moveToNextCol()
-end
+--while(inventory.findBlockByNameMatch("seeds")) do
+--    harvestColumn()
+--    moveToNextCol()
+--end
+harvestColumn()
+print("sleeping for 10 seconds")
+sleep(10)
+moveToNextCol()
+print("sleeping for 10 seconds")
+sleep(10)
+harvestColumn()
+print("sleeping for 10 seconds")
+sleep(10)
+moveToNextCol()
