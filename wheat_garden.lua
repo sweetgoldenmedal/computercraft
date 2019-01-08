@@ -42,29 +42,29 @@ end
 
 local function colReturn() -- return to the beginning of the column and attempt to move to the next column
     while(zdir ~= -1) do
-        movement.turnRight()
+        turnRight()
     end
     while zpos > starting_zpos do
-        movement.moveForward()
+        moveForward()
     end
     moveToNextCol()
 end
 
 local function rowReturn()
     while(xdir ~= -1) do
-        movement.turnRight()
+        turnRight()
     end
     while(xpos > starting_xpos) do
-        movement.moveForward()
+        moveForward()
     end
 end
 
 local function moveToNextCol() -- pathways are 3 blocks apart
     while(xdir ~= 1) do
-        movement.turnLeft()
+        turnLeft()
     end
     for n=1,3 do
-        if not movement.moveForward() then
+        if not moveForward() then
             rowReturn()
         end
     end
@@ -72,12 +72,12 @@ end
 
 local function moveToNextBlock()  -- move z+1 and turn to face the new block
     while(zdir ~= 1) do
-        movement.turnLeft()
+        turnLeft()
     end
-    if not movement.moveForward() then -- if we are blocked from moving toward positive z, return to the beginning of the col
+    if not moveForward() then -- if we are blocked from moving toward positive z, return to the beginning of the col
         colReturn()
     end
-    movement.turnRight()
+    turnRight()
 end
 
 local function checkBlock() -- conditionally harvest or plant the block
