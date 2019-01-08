@@ -9,7 +9,7 @@ xdir = 0
 zdir = 1
 
 function moveBack()
-    if DEBUG then print("executing moveBack function") end
+    if DEBUG then print("function: moveBack()") end
     xpos = xpos + xdir
     zpos = zpos + zdir
     turtle.back()
@@ -17,7 +17,7 @@ function moveBack()
 end
 
 function moveForward()
-    if DEBUG then print("executing moveForward function") end
+    if DEBUG then print("function: moveForward()") end
     xpos = xpos + xdir
     zpos = zpos + zdir
     turtle.forward()
@@ -25,7 +25,7 @@ function moveForward()
 end
 
 function turnLeft()
-    if DEBUG then print("executing turnLeft function") end
+    if DEBUG then print("function: turnLeft()") end
     xdir = -zdir
     zdir = xdir
     turtle.turnLeft()
@@ -33,7 +33,7 @@ function turnLeft()
 end
 
 function turnRight()
-    if DEBUG then print("executing turnRight function") end
+    if DEBUG then print("function: turnRight()") end
     xdir = zdir
     zdir = -xdir
     turtle.turnRight()
@@ -87,18 +87,28 @@ end
 local function checkBlock() -- conditionally harvest or plant the block
     if DEBUG then print("function: checkBlock()") end
     if(turtle.detect()) then
+        if DEBUG then print("turtle.detect() found something") end
         local return_value , blockdata = turtle.inspect()
         if(return_value == true) then
             --print("Block name: ", blockdata.name)
             --print("Block metadata: ", blockdata.metadata)
             -- if the block in front is a fence (of any kind) it is time to turn
-            if(string.match(blockdata.name, "minecraft:wheat") and string.match(blockdata.metadata, 7)) then
-                harvestBlock()
+            if(string.match(blockdata.name, "minecraft:wheat")) then
+                if DEBUG then print("I found wheat, now checking age") end
+                if (string.match(blockdata.metadata, 7)) then
+                    if DEBUG then print("The wheat is age 7, harvesting") end
+                    harvestBlock()
+                else 
+                    if DEBUG then print("The wheat is not age 7, skipping...") end
+                end
             end
         else
             plantBlock()
         end
-    end
+    else
+        if DEBUG then print("turtle.detect() didn't find anything") end
+        return false
+    end 
 end
 
 local function harvestBlock() -- largely redundant function (could just use plantBlock()), but it makes the logic more understandable I think
@@ -125,12 +135,4 @@ end
 --    moveToNextCol()
 --end
 harvestColumn()
-print("sleeping for 10 seconds")
-sleep(10)
-moveToNextCol()
-print("sleeping for 10 seconds")
-sleep(10)
-harvestColumn()
-print("sleeping for 10 seconds")
-sleep(10)
-moveToNextCol()
+--moveToNextCol()
