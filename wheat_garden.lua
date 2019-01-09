@@ -60,7 +60,10 @@ function colReturn() -- return to the beginning of the column
         turnRight()
     end
     while zpos > starting_zpos do
-       moveForward()
+        if not (moveForward()) then 
+            textutils.slowPrint("unable to move foward, returning false")
+            return false
+        end        
     end
 end
 
