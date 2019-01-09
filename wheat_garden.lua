@@ -12,16 +12,22 @@ function moveBack()
     if DEBUG then print("function: moveBack()") end
     xpos = xpos + xdir
     zpos = zpos + zdir
-    turtle.back()
-    return true
+    if(turtle.back()) then
+        return true
+    else
+        return false
+    end
 end
 
 function moveForward()
     if DEBUG then print("function: moveForward()") end
     xpos = xpos + xdir
     zpos = zpos + zdir
-    turtle.forward()
-    return true
+    if(turtle.forward()) then
+        return true
+    else
+        return false
+    end
 end
 
 function turnLeft()
@@ -29,8 +35,11 @@ function turnLeft()
     if DEBUG then print("xdir: "..xdir.." zdir: " ..zdir) end
     xdir = -zdir
     zdir = xdir
-    turtle.turnLeft()
-    return true
+    if(turtle.turnLeft()) then
+        return true
+    else
+        return false
+    end
 end
 
 function turnRight()
@@ -38,8 +47,11 @@ function turnRight()
     if DEBUG then print("xdir: "..xdir.." zdir: " ..zdir) end
     xdir = zdir
     zdir = -xdir
-    turtle.turnRight()
-    return true
+    if(turtle.turnRight()) then
+        return true
+    else
+        return false
+    end
 end
 
 function colReturn() -- return to the beginning of the column and attempt to move to the next column
@@ -48,7 +60,7 @@ function colReturn() -- return to the beginning of the column and attempt to mov
         turnRight()
     end
     while zpos > starting_zpos do
-        moveForward()
+       moveForward()
     end
 end
 
