@@ -49,7 +49,7 @@ function turn_right()
     xdir = zdir
     zdir = -xdir
     if DEBUG then textutils.slowPrint("post-turn values xdir: "..xdir.." zdir: " ..zdir) end
-    if(turtle.turn_right()) then
+    if(turtle.turnRight()) then
         return true
     else
         return false
