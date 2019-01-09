@@ -40,7 +40,7 @@ function turnRight()
     return true
 end
 
-local function colReturn() -- return to the beginning of the column and attempt to move to the next column
+function colReturn() -- return to the beginning of the column and attempt to move to the next column
     if DEBUG then print("function: colReturn()") end
     while(zdir ~= -1) do
         turnRight()
@@ -51,7 +51,7 @@ local function colReturn() -- return to the beginning of the column and attempt 
     moveToNextCol()
 end
 
-local function rowReturn()
+function rowReturn()
     if DEBUG then print("function: rowReturn()") end
     while(xdir ~= -1) do
         turnRight()
@@ -61,7 +61,7 @@ local function rowReturn()
     end
 end
 
-local function moveToNextCol() -- pathways are 3 blocks apart
+function moveToNextCol() -- pathways are 3 blocks apart
     if DEBUG then print("function: moveToNextCol()") end
     while(xdir ~= 1) do
         turnLeft()
@@ -73,7 +73,7 @@ local function moveToNextCol() -- pathways are 3 blocks apart
     end
 end
 
-local function moveToNextBlock()  -- move z+1 and turn to face the new block
+function moveToNextBlock()  -- move z+1 and turn to face the new block
     if DEBUG then print("function: moveToNextBlock()") end
     while(zdir ~= 1) do
         turnLeft()
@@ -84,7 +84,7 @@ local function moveToNextBlock()  -- move z+1 and turn to face the new block
     turnRight()
 end
 
-local function checkBlock() -- conditionally harvest or plant the block
+function checkBlock() -- conditionally harvest or plant the block
     if DEBUG then print("function: checkBlock()") end
     if(turtle.detect()) then
         if DEBUG then print("turtle.detect() found something") end
@@ -109,20 +109,20 @@ local function checkBlock() -- conditionally harvest or plant the block
     end 
 end
 
-local function harvestBlock() -- largely redundant function (could just use plantBlock()), but it makes the logic more understandable I think
+function harvestBlock() -- largely redundant function (could just use plantBlock()), but it makes the logic more understandable I think
     if DEBUG then print("function: harvestBlock()") end
     turtle.dig() -- harvest the existing wheat
     plantBlock()
 end
 
-local function plantBlock()
+function plantBlock()
     if DEBUG then print("function: plantBlock()") end
     turtle.dig()
     inventory.findBlockByNameMatch("wheat")
     turtle.place()
 end
 
-local function harvestColumn()
+function harvestColumn()
     if DEBUG then print("function: harvestColumn()") end
     moveToNextBlock()
     checkBlock()
