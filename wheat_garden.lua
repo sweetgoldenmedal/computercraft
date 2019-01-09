@@ -30,8 +30,8 @@ function moveForward()
     end
 end
 
-function turnLeft()
-    if DEBUG then textutils.slowPrint("function: turnLeft()") end
+function turn_left()
+    if DEBUG then textutils.slowPrint("function: turn_left()") end
     if DEBUG then textutils.slowPrint("pre-turn values: xdir: "..xdir.." zdir: " ..zdir) end
     xdir = -zdir
     zdir = xdir
@@ -43,13 +43,13 @@ function turnLeft()
     end
 end
 
-function turnRight()
-    if DEBUG then textutils.slowPrint("function: turnRight()") end
+function turn_right()
+    if DEBUG then textutils.slowPrint("function: turn_right()") end
     if DEBUG then textutils.slowPrint("pre-turn values: xdir: "..xdir.." zdir: " ..zdir) end
     xdir = zdir
     zdir = -xdir
-    if DEBUG then textutils.slowPrint("post turn values xdir: "..xdir.." zdir: " ..zdir) end
-    if(turtle.turnRight()) then
+    if DEBUG then textutils.slowPrint("post-turn values xdir: "..xdir.." zdir: " ..zdir) end
+    if(turtle.turn_right()) then
         return true
     else
         return false
@@ -59,7 +59,7 @@ end
 function colReturn() -- return to the beginning of the column
     if DEBUG then textutils.slowPrint("function: colReturn()") end
     while(zdir ~= -1) do
-        turnRight()
+        turn_right()
     end
     while zpos > starting_zpos do
         if not (moveForward()) then 
@@ -72,7 +72,7 @@ end
 function rowReturn()
     if DEBUG then textutils.slowPrint("function: rowReturn()") end
     while(xdir ~= -1) do
-        turnRight()
+        turn_right()
     end
     while(xpos > starting_xpos) do
         moveForward()
@@ -82,7 +82,7 @@ end
 function moveToNextCol() -- pathways are 3 blocks apart
     if DEBUG then textutils.slowPrint("function: moveToNextCol()") end
     while(xdir ~= 1) do
-        turnLeft()
+        turn_left()
     end
     for n=1,3 do
         if not moveForward() then
@@ -94,12 +94,12 @@ end
 function moveToNextBlock()  -- move z+1 and turn to face the new block
     if DEBUG then textutils.slowPrint("function: moveToNextBlock()") end
     while(zdir ~= 1) do
-        turnLeft()
+        turn_left()
     end
     if not moveForward() then -- if we are blocked from moving toward positive z, return false
         return false
     end
-    turnRight()
+    turn_right()
     return true
 end
 
@@ -155,5 +155,5 @@ end
 --end
 --harvestColumn()
 --moveToNextCol()
-turnRight()
-turnLeft()
+turn_right()
+turn_left()
