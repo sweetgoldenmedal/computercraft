@@ -26,6 +26,7 @@ end
 
 function turnLeft()
     if DEBUG then print("function: turnLeft()") end
+    if DEBUG then print("xdir: "..xdir.." zdir: " ..zdir) end
     xdir = -zdir
     zdir = xdir
     turtle.turnLeft()
@@ -34,6 +35,7 @@ end
 
 function turnRight()
     if DEBUG then print("function: turnRight()") end
+    if DEBUG then print("xdir: "..xdir.." zdir: " ..zdir) end
     xdir = zdir
     zdir = -xdir
     turtle.turnRight()
@@ -81,6 +83,7 @@ function moveToNextBlock()  -- move z+1 and turn to face the new block
         return false
     end
     turnRight()
+    return true
 end
 
 function checkBlock() -- conditionally harvest or plant the block
