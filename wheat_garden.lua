@@ -48,7 +48,6 @@ function colReturn() -- return to the beginning of the column and attempt to mov
     while zpos > starting_zpos do
         moveForward()
     end
-    moveToNextCol()
 end
 
 function rowReturn()
@@ -78,8 +77,8 @@ function moveToNextBlock()  -- move z+1 and turn to face the new block
     while(zdir ~= 1) do
         turnLeft()
     end
-    if not moveForward() then -- if we are blocked from moving toward positive z, return to the beginning of the col
-        colReturn()
+    if not moveForward() then -- if we are blocked from moving toward positive z, return false
+        return false
     end
     turnRight()
 end
@@ -124,8 +123,10 @@ end
 
 function harvestColumn()
     if DEBUG then print("function: harvestColumn()") end
-    moveToNextBlock()
-    checkBlock()
+    while(moveToNextBlock()) do
+        checkBlock()
+    end
+    colReturn()
 end
 
 --while(inventory.findBlockByNameMatch("seeds")) do
