@@ -32,9 +32,10 @@ end
 
 function turnLeft()
     if DEBUG then textutils.slowPrint("function: turnLeft()") end
+    if DEBUG then textutils.slowPrint("pre-turn values: xdir: "..xdir.." zdir: " ..zdir) end
     xdir = -zdir
     zdir = xdir
-    if DEBUG then textutils.slowPrint("post turn values: xdir: "..xdir.." zdir: " ..zdir) end
+    if DEBUG then textutils.slowPrint("post-turn values: xdir: "..xdir.." zdir: " ..zdir) end
     if(turtle.turnLeft()) then
         return true
     else
@@ -44,6 +45,7 @@ end
 
 function turnRight()
     if DEBUG then textutils.slowPrint("function: turnRight()") end
+    if DEBUG then textutils.slowPrint("pre-turn values: xdir: "..xdir.." zdir: " ..zdir) end
     xdir = zdir
     zdir = -xdir
     if DEBUG then textutils.slowPrint("post turn values xdir: "..xdir.." zdir: " ..zdir) end
@@ -151,5 +153,7 @@ end
 --    harvestColumn()
 --    moveToNextCol()
 --end
-harvestColumn()
+--harvestColumn()
 --moveToNextCol()
+turnRight()
+turnLeft()
