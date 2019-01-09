@@ -32,9 +32,9 @@ end
 
 function turnLeft()
     if DEBUG then print("function: turnLeft()") end
-    if DEBUG then print("xdir: "..xdir.." zdir: " ..zdir) end
     xdir = -zdir
     zdir = xdir
+    if DEBUG then print("post turn values: xdir: "..xdir.." zdir: " ..zdir) end
     if(turtle.turnLeft()) then
         return true
     else
@@ -44,9 +44,9 @@ end
 
 function turnRight()
     if DEBUG then print("function: turnRight()") end
-    if DEBUG then print("xdir: "..xdir.." zdir: " ..zdir) end
     xdir = zdir
     zdir = -xdir
+    if DEBUG then print("post turn values xdir: "..xdir.." zdir: " ..zdir) end
     if(turtle.turnRight()) then
         return true
     else
@@ -54,7 +54,7 @@ function turnRight()
     end
 end
 
-function colReturn() -- return to the beginning of the column and attempt to move to the next column
+function colReturn() -- return to the beginning of the column
     if DEBUG then print("function: colReturn()") end
     while(zdir ~= -1) do
         turnRight()
