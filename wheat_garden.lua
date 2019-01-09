@@ -151,11 +151,7 @@ function harvestColumn()
     colReturn()
 end
 
---while(inventory.findBlockByNameMatch("seeds")) do
---    harvestColumn()
---    moveToNextCol()
---end
---harvestColumn()
---moveToNextCol()
-turn_right()
-turn_left()
+while(inventory.findBlockByNameMatch("seeds")) do
+    harvestColumn()
+    moveToNextCol()
+end
