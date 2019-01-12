@@ -1,6 +1,6 @@
 -- TODO: grass (and presumably any other obstruction keeps the block from being interacted with
 -- TODO: mobs getting in the way will no doubt foul things up also
-DEBUG = 1
+DEBUG = false 
 -- load up the libraries
 --os.loadAPI("lib/movement")
 os.loadAPI("lib/inventory")
