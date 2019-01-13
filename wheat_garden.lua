@@ -141,7 +141,7 @@ end
 function plantBlock()
     if DEBUG then textutils.slowPrint("function: plantBlock()") end
     turtle.dig()
-    inventory.findBlockByNameMatch("wheat")
+    inventory.findBlockByNameMatch("seed")
     turtle.place()
 end
 
