@@ -113,7 +113,7 @@ end
 function moveToNextBlock()  -- move z+1 and turn to face the new block
     if DEBUG then textutils.slowPrint("function: moveToNextBlock()") end
     while(zdir ~= 1) do
-        turn_right()
+        turn_left()
     end
     if not moveForward() then -- if we are blocked from moving toward positive z, return false
         return false
