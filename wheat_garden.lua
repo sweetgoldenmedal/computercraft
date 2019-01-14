@@ -113,7 +113,7 @@ end
 function moveToNextBlock()  -- move z+1 and turn to face the new block
     if DEBUG then textutils.slowPrint("function: moveToNextBlock()") end
     while(zdir ~= 1) do
-        turn_left()
+        turn_right()
     end
     if not moveForward() then -- if we are blocked from moving toward positive z, return false
         return false
@@ -186,12 +186,13 @@ function moveDownToGroundLevel()
 end
 
 while(true) do
-    --while(true)inventory.findBlockByNameMatch("seeds")) do
-    if(harvestColumn()) then
-        colReturn()
-        if not (moveToNextCol()) then
-            rowReturn() 
+    while(inventory.findBlockByNameMatch("seeds")) do
+        if(harvestColumn()) then
+            colReturn()
+            if not (moveToNextCol()) then
+                rowReturn() 
+            end
         end
     end
-    --moveUpOneLevel()
+    moveUpOneLevel()
 end
