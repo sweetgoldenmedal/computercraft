@@ -48,8 +48,10 @@ function moveForward()
     xpos = xpos + xdir
     zpos = zpos + zdir
     if(turtle.forward()) then
+        print("returning true from moveForward()")
         return true
     else
+        print("returning false from moveForward()")
         return false
     end
 end
@@ -176,13 +178,21 @@ function harvestColumn()
     --colReturn()
     return true
 end
-   
+
 function moveUpOneLevel()
-    --stub
+    for n=1,4 do
+        if not (moveUp()) then
+           moveDownToGroundLevel() 
+        end
+    end
 end
 
-function moveDownOneLevel()
-    -- stub
+function moveDownToGroundLevel()
+    while(ypos ~= 0) do
+        if not (moveDown()) then
+            return false
+        end
+    end
 end
 
 while(inventory.findBlockByNameMatch("seeds")) do
@@ -192,4 +202,5 @@ while(inventory.findBlockByNameMatch("seeds")) do
             rowReturn() 
         end
     end
+    --moveUpOneLevel()
 end
