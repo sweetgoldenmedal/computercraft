@@ -7,8 +7,30 @@ os.loadAPI("lib/inventory")
 
 starting_xpos, xpos = 0,0
 starting_zpos, zpos = 0,0
+starting_ypos, ypos = 0,0
 xdir = 0
 zdir = 1
+
+
+function moveUp()
+    if DEBUG then textutils.slowPrint("function: moveUp()") end
+    ypos = ypos + 1
+    if(turtle.up()) then
+        return true
+    else
+        return false
+    end
+end
+
+function moveDown()
+    if DEBUG then textutils.slowPrint("function: moveUp()") end
+    ypos = ypos - 1
+    if(turtle.down()) then
+        return true
+    else
+        return false
+    end
+end
 
 function moveBack()
     if DEBUG then textutils.slowPrint("function: moveBack()") end
@@ -90,7 +112,8 @@ function moveToNextCol() -- pathways are 3 blocks apart
     end
     for n=1,3 do
         if not moveForward() then
-            rowReturn()
+            --rowReturn()
+            return false
         end
     end
 end
@@ -150,10 +173,23 @@ function harvestColumn()
     while(moveToNextBlock()) do
         checkBlock()
     end
-    colReturn()
+    --colReturn()
+    return true
+end
+   
+function moveUpOneLevel()
+    --stub
+end
+
+function moveDownOneLevel()
+    -- stub
 end
 
 while(inventory.findBlockByNameMatch("seeds")) do
-    harvestColumn()
-    moveToNextCol()
+    if(harvestColumn()) then
+        colReturn()
+        if not (moveToNextCol()) then
+            rowReturn() 
+        end
+    end
 end
