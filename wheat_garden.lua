@@ -58,11 +58,7 @@ end
 
 function turn_left()
     if DEBUG then textutils.slowPrint("function: turn_left()") end
-    if DEBUG then textutils.slowPrint("pre-turn values: xdir: "..xdir.." zdir: " ..zdir) end
-    --xdir = -zdir
-    --zdir = xdir
     xdir, zdir = -zdir, xdir
-    if DEBUG then textutils.slowPrint("post-turn values: xdir: "..xdir.." zdir: " ..zdir) end
     if(turtle.turnLeft()) then
         return true
     else
@@ -72,11 +68,7 @@ end
 
 function turn_right()
     if DEBUG then textutils.slowPrint("function: turn_right()") end
-    if DEBUG then textutils.slowPrint("pre-turn values: xdir: "..xdir.." zdir: " ..zdir) end
-    --xdir = zdir
-    --zdir = -xdir
     xdir, zdir = zdir, -xdir
-    if DEBUG then textutils.slowPrint("post-turn values xdir: "..xdir.." zdir: " ..zdir) end
     if(turtle.turnRight()) then
         return true
     else
@@ -118,6 +110,7 @@ function moveToNextCol() -- pathways are 3 blocks apart
             return false
         end
     end
+    return true
 end
 
 function moveToNextBlock()  -- move z+1 and turn to face the new block
