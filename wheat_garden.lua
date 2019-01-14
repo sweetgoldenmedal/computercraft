@@ -185,7 +185,7 @@ function moveDownToGroundLevel()
     end
 end
 
-while(true) do
+while(inventory.findBlockByNameMatch("seeds")) do
     while(inventory.findBlockByNameMatch("seeds")) do
         if(harvestColumn()) then
             colReturn()
