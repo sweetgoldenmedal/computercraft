@@ -10,7 +10,8 @@ starting_zpos, zpos = 0,0
 starting_ypos, ypos = 0,0
 xdir = 0
 zdir = 1
-rowSpacing = 2
+rowSpacing  = 2
+levelHeight = 4
 
 
 function moveUp()
@@ -171,7 +172,7 @@ function harvestColumn()
 end
 
 function moveUpOneLevel()
-    for n=1,4 do
+    for n=1,levelHeight do
         if not (moveUp()) then
             return false
         end
