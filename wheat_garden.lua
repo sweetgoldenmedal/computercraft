@@ -23,7 +23,7 @@ function moveUp()
 end
 
 function moveDown()
-    if DEBUG then textutils.slowPrint("function: moveUp()") end
+    if DEBUG then textutils.slowPrint("function: moveDown()") end
     ypos = ypos - 1
     if(turtle.down()) then
         return true
@@ -172,25 +172,29 @@ end
 function moveUpOneLevel()
     for n=1,4 do
         if not (moveUp()) then
-           moveDownToGroundLevel() 
+            return false
         end
     end
+    return true
 end
 
 function moveDownToGroundLevel()
-    while(ypos ~= 0) do
+    while(ypos > starting_ypos) do
         if not (moveDown()) then
             return false
         end
     end
+    return true
 end
 
-while(inventory.findBlockByNameMatch("seeds")) do
-    if(harvestColumn()) then
-        colReturn()
-        if not (moveToNextCol()) then
-            rowReturn() 
-            moveUpOneLevel()
+while(inventory.findBlockByNameMatch("seeds")) do   -- remove seeds from the turtle inventory as a means of stopping it
+    if(harvestColumn()) then                        -- attempt to harvest the current column 
+        colReturn()                                 -- return to the start of the column upon completion
+        if not (moveToNextCol()) then               -- attempt to move to the next column
+            rowReturn()                             -- if you can't assume you are at the end of the row and attempt to return to the beginning of the row
+            if not (moveUpOneLevel()) then          -- assume you have completed all rows on this level, ascend one level
+                moveDownToGroundLevel()             -- if you can't ascend (you hit the ceiling) go back down
+            end
         end
     end
 end
