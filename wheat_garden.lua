@@ -10,6 +10,7 @@ starting_zpos, zpos = 0,0
 starting_ypos, ypos = 0,0
 xdir = 0
 zdir = 1
+rowSpacing = 2
 
 
 function moveUp()
@@ -101,7 +102,7 @@ function moveToNextCol() -- pathways are 3 blocks apart
     while(xdir ~= 1) do
         turn_left()
     end
-    for n=1,3 do
+    for n=1,rowSpacing do
         if not moveForward() then
             return false
         end
