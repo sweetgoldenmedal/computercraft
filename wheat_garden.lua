@@ -35,9 +35,9 @@ end
 
 function moveBack()
     if DEBUG then textutils.slowPrint("function: moveBack()") end
-    xpos = xpos + xdir
-    zpos = zpos + zdir
     if(turtle.back()) then
+        xpos = xpos + xdir
+        zpos = zpos + zdir
         return true
     else
         return false
@@ -46,9 +46,9 @@ end
 
 function moveForward()
     if DEBUG then textutils.slowPrint("function: moveForward()") end
-    xpos = xpos + xdir
-    zpos = zpos + zdir
     if(turtle.forward()) then
+        xpos = xpos + xdir
+        zpos = zpos + zdir
         return true
     else
         return false
@@ -57,8 +57,8 @@ end
 
 function turn_left()
     if DEBUG then textutils.slowPrint("function: turn_left()") end
-    xdir, zdir = -zdir, xdir
     if(turtle.turnLeft()) then
+        xdir, zdir = -zdir, xdir
         return true
     else
         return false
@@ -67,8 +67,8 @@ end
 
 function turn_right()
     if DEBUG then textutils.slowPrint("function: turn_right()") end
-    xdir, zdir = zdir, -xdir
     if(turtle.turnRight()) then
+        xdir, zdir = zdir, -xdir
         return true
     else
         return false
@@ -85,6 +85,7 @@ function colReturn() -- return to the beginning of the column
             return false
         end        
     end
+    return true
 end
 
 function rowReturn()
