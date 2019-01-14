@@ -81,7 +81,6 @@ function colReturn() -- return to the beginning of the column
     end
     while zpos > starting_zpos do
         if not (moveForward()) then 
-            textutils.slowPrint("unable to move foward, returning false")
             return false
         end        
     end
@@ -191,9 +190,11 @@ function dumpWheat()
     while(zdir ~= -1) do -- face toward -z so you're facing the chest that sits at the corner of the garden
         turn_left()
     end
-    while(turtle.select(inventory.findBlockByNameMatch("wheat"))) do   
+    while(inventory.findBlockByNameMatch("wheat")) do   
+        turtle.select(inventory.findBlockByNameMatch("wheat"))
         turtle.drop()
     end 
+    return true
 end
 
 while(inventory.findBlockByNameMatch("seeds")) do   -- remove seeds from the turtle inventory as a means of stopping it
