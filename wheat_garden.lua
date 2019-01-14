@@ -186,13 +186,11 @@ function moveDownToGroundLevel()
 end
 
 while(inventory.findBlockByNameMatch("seeds")) do
-    while(inventory.findBlockByNameMatch("seeds")) do
-        if(harvestColumn()) then
-            colReturn()
-            if not (moveToNextCol()) then
-                rowReturn() 
-            end
+    if(harvestColumn()) then
+        colReturn()
+        if not (moveToNextCol()) then
+            rowReturn() 
+            moveUpOneLevel()
         end
     end
-    moveUpOneLevel()
 end
