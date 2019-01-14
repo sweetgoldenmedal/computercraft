@@ -190,8 +190,8 @@ function dumpWheat()
     while(zdir ~= -1) do -- face toward -z so you're facing the chest that sits at the corner of the garden
         turn_left()
     end
-    while(inventory.findBlockByNameMatch("wheat")) do   
-        turtle.select(inventory.findBlockByNameMatch("wheat"))
+    while(inventory.findBlockByExactName("minecraft:wheat")) do   
+        turtle.select(inventory.findBlockByExactName("minecraft:wheat"))
         turtle.drop()
     end 
     return true
