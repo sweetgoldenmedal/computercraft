@@ -104,7 +104,6 @@ function moveToNextCol() -- pathways are 3 blocks apart
     end
     for n=1,3 do
         if not moveForward() then
-            --rowReturn()
             return false
         end
     end
@@ -132,10 +131,6 @@ function checkBlock() -- conditionally harvest or plant the block
             --print("Block name: ", blockdata.name)
             --print("Block metadata: ", blockdata.metadata)
             -- if the block in front is a fence (of any kind) it is time to turn
-            if(string.match(blockdata.name, "minecraft:torch")) then
-                -- placing a torch in front of the turtle should cause it to exit the entire program
-                return false
-            end
             if(string.match(blockdata.name, "minecraft:wheat")) then
                 if DEBUG then textutils.slowPrint("I found wheat, now checking age") end
                 if (string.match(blockdata.metadata, 7)) then
@@ -169,9 +164,7 @@ end
 function harvestColumn()
     if DEBUG then textutils.slowPrint("function: harvestColumn()") end
     while(moveToNextBlock()) do
-        if not (checkBlock()) then
-            return false
-        end
+        checkBlock()
     end
     return true
 end
