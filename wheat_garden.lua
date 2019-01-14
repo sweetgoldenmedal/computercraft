@@ -203,8 +203,8 @@ while(inventory.findBlockByNameMatch("seeds")) do   -- remove seeds from the tur
         if not (moveToNextCol()) then               -- attempt to move to the next column
             rowReturn()                             -- if you can't assume you are at the end of the row and attempt to return to the beginning of the row
             if not (moveUpOneLevel()) then          -- assume you have completed all rows on this level, ascend one level
+                dumpWheat()                         -- make sure the top of the chests+hopper cascade is at the ceiling
                 moveDownToGroundLevel()             -- if you can't ascend (you hit the ceiling) go back down
-                dumpWheat()
             end
         end
     end
