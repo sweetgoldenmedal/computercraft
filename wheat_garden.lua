@@ -187,6 +187,15 @@ function moveDownToGroundLevel()
     return true
 end
 
+function dumpWheat()
+    while(zdir ~= -1) do -- face toward -z so you're facing the chest that sits at the corner of the garden
+        turn_left()
+    end
+    while(turtle.select(inventory.findBlockByNameMatch("wheat"))) do   
+        turtle.drop()
+    end 
+end
+
 while(inventory.findBlockByNameMatch("seeds")) do   -- remove seeds from the turtle inventory as a means of stopping it
     if(harvestColumn()) then                        -- attempt to harvest the current column 
         colReturn()                                 -- return to the start of the column upon completion
@@ -194,6 +203,7 @@ while(inventory.findBlockByNameMatch("seeds")) do   -- remove seeds from the tur
             rowReturn()                             -- if you can't assume you are at the end of the row and attempt to return to the beginning of the row
             if not (moveUpOneLevel()) then          -- assume you have completed all rows on this level, ascend one level
                 moveDownToGroundLevel()             -- if you can't ascend (you hit the ceiling) go back down
+                dumpWheat()
             end
         end
     end
