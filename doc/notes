@@ -1,0 +1,2 @@
+c = peripheral.wrap("side")
+c.turnOn()
