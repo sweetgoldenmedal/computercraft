@@ -1,6 +1,9 @@
-turtle.turnRight()
-turtle.turnRight()
-turtle.turnRight()
-turtle.turnRight()
+for a=1,5
+do
+    turtle.turnRight()
+    turtle.turnRight()
+    turtle.turnRight()
+    turtle.turnRight()
+end
 print("Downloading scripts from github.com/sweetgoldenmedal/computercraft")
 shell.run("rom/gitget.lua")
