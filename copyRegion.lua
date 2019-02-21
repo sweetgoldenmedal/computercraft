@@ -64,19 +64,38 @@ function moveDown()
     printLocation()
 end
 
-
--- copy logic
 function copyColumn()
+
+	blockAhead
+	blockOccupied
+	blockBehind
+		
     for n=1,areaDepth+1 do
+		-- check the block ahead
         if(turtle.detect()) then
-            -- there's a block
-            local return_value , blockdata = turtle.inspect()
-            if(return_value == true) then
-                print("Copy this shit: "..blockdata.name)
+            local returnValue , blockData = turtle.inspect()
+            if(returnValue == true) then
+				blockAhead = blockData.name
+				-- if we find a block, store the block type and position
             end 
         end
+
+		-- destroy the block ahead and move forward
         turtle.dig()
         moveForward()
+
+		-- turn around and replace the blockBehind if we are 2 or more blocks into the column
+		if(n>2) then
+			turtle.turnRight()
+			turtle.turnRight()
+			turtle.place(inventory.findBlockByExactName(blockBehind))
+			turtle.turnRight()
+			turtle.turnRight()
+		end
+
+		-- shuffle variables
+		blockBehind = blockOccupied
+		blockOccupied = blockAhead
     end
 end
 
@@ -84,6 +103,7 @@ end
 copyColumn()
 
 
+-- copy blockAhead to 
 
     -- copy the block type in front of turtle
     -- break block in front of the turtle
