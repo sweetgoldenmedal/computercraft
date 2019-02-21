@@ -21,14 +21,16 @@ os.loadAPI("lib/movement.lua")
 
 local args = {...}
 
-areaWidth   = args[1] or 10
-areaDepth   = args[2] or 10
-areaHeight  = args[3] or 10
+fileName	= args[1]
+areaWidth   = args[2] 
+areaDepth   = args[3] 
+areaHeight  = args[4]
 
-if(#args ~= 3) then
-    print("Usage:\n"..((shell and shell.getRunningProgram()) or "copyRegion.lua").." <width> <depth> <height>") error()
+if(#args ~= 4) then
+    print("Usage:\n"..((shell and shell.getRunningProgram()) or "copyRegion.lua").." <filename> <width> <depth> <height>") error()
 end
 
+fileHandle = io.open(fileName,"a")
 starting_xpos, xpos = 0,0
 starting_zpos, zpos = -1,-1 -- we start one block outside the area
 starting_ypos, ypos = 0,0
@@ -76,7 +78,6 @@ function copyColumn()
             local returnValue , blockData = turtle.inspect()
             if(returnValue == true) then
 				blockAhead = blockData.name
-				-- if we find a block, store the block type and position
             end 
         end
 
@@ -93,27 +94,18 @@ function copyColumn()
 			turtle.turnRight()
 		end
 
-		-- shuffle variables
+		-- shuffle variables "backwards", freeing up blockAhead to store the next block value
 		blockBehind = blockOccupied
 		blockOccupied = blockAhead
+
+		-- store the data about the blockoccupied
+		fileHandle:write(xpos,zpos,ypos,xdir,zdir,blockOccupied,'\n')
     end
 end
 
   
 copyColumn()
-
-
--- copy blockAhead to 
-
-    -- copy the block type in front of turtle
-    -- break block in front of the turtle
-    -- move forward 1 
-    -- if zpos > 1, replace the block behind
-    -- if zpos == areaDepth
-        -- return
-        -- if xpos < areaWidth 
-            -- move to next column
-        -- else 
-            -- return to starting corner
+-- close the tracking file
+io.close(fileHandle)
 
 
