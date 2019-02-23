@@ -16,8 +16,8 @@
 ]]--
 
 DEBUG = false
-os.loadAPI("lib/inventory.lua")
-os.loadAPI("lib/movement.lua")
+os.loadAPI("lib/inventory")
+os.loadAPI("lib/movement")
 
 local args = {...}
 
@@ -27,7 +27,7 @@ areaDepth   = args[3]
 areaHeight  = args[4]
 
 if(#args ~= 4) then
-    print("Usage:\n"..((shell and shell.getRunningProgram()) or "copyRegion.lua").." <filename> <width> <depth> <height>") error()
+    print("Usage:\n"..((shell and shell.getRunningProgram()) or "copyRegion.lua").." <name> <width> <depth> <height>") error()
 end
 
 fileHandle = io.open(fileName,"a")
