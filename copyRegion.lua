@@ -93,7 +93,7 @@ function copyColumn()
 		if(n>1) then
 			turtle.turnRight()
 			turtle.turnRight()
-			turtle.place(inventory.findBlockByExactName(blockBehind))
+			turtle.place(turtle.select(inventory.findBlockByExactName(blockBehind)))
 			turtle.turnRight()
 			turtle.turnRight()
 		end
@@ -106,13 +106,13 @@ end
 for w=1,areaWidth do  
     copyColumn()
     if(zdir == 1) then
-        turtle.turnRight()
-        turtle.moveForward()
-        turtle.turnRight()
+        turnRight()
+        moveForward()
+        turnRight()
     else
-        turtle.turnLeft()
-        turtle.moveForward()
-        turtle.turnLeft()
+        turnLeft()
+        moveForward()
+        turnLeft()
     end
 end
 
