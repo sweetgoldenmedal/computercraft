@@ -68,9 +68,9 @@ end
 
 function copyColumn()
 
-	blockAhead
-	blockOccupied
-	blockBehind
+	blockAhead      = ''
+	blockOccupied   = ''
+	blockBehind     = ''
 		
     for n=1,areaDepth+1 do
 		-- check the block ahead
@@ -85,8 +85,12 @@ function copyColumn()
         turtle.dig()
         moveForward()
 
-		-- turn around and replace the blockBehind if we are 2 or more blocks into the column
-		if(n>2) then
+		-- shuffle variables "backwards", freeing up blockAhead to store the next block value
+		blockBehind = blockOccupied
+		blockOccupied = blockAhead
+
+		-- turn around and replace the blockBehind if we are 1 or more blocks into the column
+		if(n>1) then
 			turtle.turnRight()
 			turtle.turnRight()
 			turtle.place(inventory.findBlockByExactName(blockBehind))
@@ -94,17 +98,24 @@ function copyColumn()
 			turtle.turnRight()
 		end
 
-		-- shuffle variables "backwards", freeing up blockAhead to store the next block value
-		blockBehind = blockOccupied
-		blockOccupied = blockAhead
-
 		-- store the data about the blockoccupied
-		fileHandle:write(xpos,zpos,ypos,xdir,zdir,blockOccupied,'\n')
+		fileHandle:write(xpos..','..zpos..','..ypos..','..xdir..','..zdir..','..blockOccupied..'\n')
     end
 end
 
-  
-copyColumn()
+for w=1,areaWidth do  
+    copyColumn()
+    if(zdir == 1) then
+        turtle.turnRight()
+        turtle.moveForward()
+        turtle.turnRight()
+    else
+        turtle.turnLeft()
+        turtle.moveForward()
+        turtle.turnLeft()
+    end
+end
+
 -- close the tracking file
 io.close(fileHandle)
 
