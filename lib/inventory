@@ -1,3 +1,14 @@
+function findBlockByNameAndMeta(blockName, metataData)
+    for n=1,16 do
+        if turtle.getItemCount(n) ~= 0 then
+            local itemDetails = turtle.getItemDetail(n)
+            if( string.match(itemDetails.name, blockName) and string.match(itemDetails.damage, metaData) ) then
+                return n
+            end
+        end
+    end
+end
+
 function findBlockByNameMatch(blockName)
     for n=1,16 do
         if turtle.getItemCount(n) ~= 0 then

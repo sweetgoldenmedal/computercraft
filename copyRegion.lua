@@ -1,5 +1,5 @@
 --[[
- The turltle should be placed outside the region to be copied facing the lowest z/x corner
+ The turtle should be placed outside the region to be copied facing the lowest z/x corner
 
  * * * * * * * * * *
  *                 *
@@ -21,7 +21,7 @@ os.loadAPI("lib/movement")
 
 local args = {...}
 
-fileName	= args[1]
+fileName    = args[1]
 areaWidth   = args[2] 
 areaDepth   = args[3] 
 areaHeight  = args[4]
@@ -68,16 +68,22 @@ end
 
 function copyColumn()
 
-	blockAhead      = ''
-	blockOccupied   = ''
-	blockBehind     = ''
-		
+    blockAhead          = ''
+    blockAheadMeta      = ''
+
+    blockOccupied       = ''
+    blockOccupiedMeta   = ''
+
+    blockBehind         = ''
+    blockBehindMeta     = ''
+
     for n=1,areaDepth+1 do
 		-- check the block ahead
         if(turtle.detect()) then
             local returnValue , blockData = turtle.inspect()
             if(returnValue == true) then
-				blockAhead = blockData.name
+				blockAhead      = blockData.name
+                blockAheadMeta  = blockData.metadata
             end 
         end
 
@@ -85,21 +91,24 @@ function copyColumn()
         turtle.dig()
         moveForward()
 
-		-- shuffle variables "backwards", freeing up blockAhead to store the next block value
-		blockBehind = blockOccupied
-		blockOccupied = blockAhead
+		-- shuffle variables "backwards", freeing up blockAhead and blockAheadMeta to store the next block value
+		blockBehind         = blockOccupied
+		blockBehindMeta     = blockOccupiedMeta
+
+		blockOccupied       = blockAhead
+		blockOccupiedMeta   = blockAheadMeta
 
 		-- turn around and replace the blockBehind if we are 1 or more blocks into the column
 		if(n>1) then
 			turtle.turnRight()
 			turtle.turnRight()
-			turtle.place(turtle.select(inventory.findBlockByExactName(blockBehind)))
+			turtle.place(turtle.select(inventory.findBlockByNameAndMeta(blockBehind,blockBehindMeta)))
 			turtle.turnRight()
 			turtle.turnRight()
 		end
 
 		-- store the data about the blockoccupied
-		fileHandle:write(xpos..','..zpos..','..ypos..','..xdir..','..zdir..','..blockOccupied..'\n')
+		fileHandle:write(xpos..','..zpos..','..ypos..','..xdir..','..zdir..','..blockOccupied..','..blockOccupiedMeta..'\n')
     end
 end
 
