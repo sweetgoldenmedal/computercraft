@@ -8,7 +8,6 @@
 
 function traverseSide(length)
     length = length or 22
-    turtle.turnLeft()
     for i=1,length do 
 
         -- ensure the parent turtle is reaped 
@@ -19,8 +18,11 @@ function traverseSide(length)
 end
 
 traverseSide()
+turtle.turnLeft()
 traverseSide()
+turtle.turnLeft()
 traverseSide()
+turtle.turnLeft()
 -- leave room to give birth
 traverseSide(21)
 -- give birth 
