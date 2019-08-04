@@ -7,3 +7,4 @@ do
 end
 print("Downloading scripts from github.com/sweetgoldenmedal/computercraft")
 shell.run("rom/gitget.lua")
+shell.run("wheat_garden.lua")
