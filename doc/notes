@@ -1,2 +1,37 @@
-c = peripheral.wrap("side")
+#In order for a turtle to place and start a child turtle, it needs to place the turtle and then wrap it and turn it on
+c = peripheral.wrap("front")
 c.turnOn()
+
+# I would like to find a way for the parent turtle to send some information to the newly created child turtle such as
+# a name (so that there is no amiguity about which child turtle is which with the CC)
+# location (so that there is no need to implement global GPS, which would significantly complicate the von neumann idea)
+
+List of methods that one turtle can call on another (discovered via peripheral.getMethods("front")
+1. reboot
+2. getInventoryName
+3. turnOn
+4. pullItem
+5. getID
+6. condenseItems
+7. expandStack
+8. getStackInSlot
+9. listSources
+10. getInventorySize
+11. swapStacks
+12. destroyStack
+13. isOn
+14. pushItemIntoSlot
+15. getAdvancedMethodsData
+16. pullItemIntoSlot
+17. listMethods
+18. doc 
+19. getAllStacks
+20. pushItem
+21. shutdown
+
+Ok, looks like the parent turtle can find the ID of the newly placed turtle by calling
+peripheral.getID()
+The child turtle can find its own ID by calling
+os.getComputerID()
+
+This should allow the parent turtle to pass the coordinates of the child turtle up to CC and then CC can inform the new turtle of its location
