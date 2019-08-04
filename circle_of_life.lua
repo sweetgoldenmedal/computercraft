@@ -11,7 +11,7 @@ function traverseSide(length)
     turtle.turnLeft()
     for i=1,length do 
 
-        # ensure the parent turtle is reaped 
+        -- ensure the parent turtle is reaped 
         turtle.dig() 
 
         turtle.forward()
