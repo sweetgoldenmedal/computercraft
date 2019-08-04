@@ -21,7 +21,7 @@ end
 traverseSide()
 traverseSide()
 traverseSide()
-# leave room to give birth
+-- leave room to give birth
 traverseSide(21)
-# give birth 
+-- give birth 
 turtle.place()
