@@ -1,6 +1,6 @@
 #DEBUG = false
 #os.loadAPI("lib/inventory")
-#os.loadAPI("lib/movement"
+#os.loadAPI("lib/movement")
 
 # assume that the turtle will move around a square that is 22 on a side
 # assume that the parent turtle has completed the circuit minus one, e.g. the child
@@ -10,7 +10,10 @@ function traverseSide(length)
     length = length or 22
     turtle.turnLeft()
     for i=1,length do 
-        turtle.dig() # will ensure the parent turtle is always reaped
+
+        # ensure the parent turtle is reaped 
+        turtle.dig() 
+
         turtle.forward()
     end
 end
