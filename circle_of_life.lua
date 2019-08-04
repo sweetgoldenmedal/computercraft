@@ -25,5 +25,5 @@ traverseSide()
 traverseSide(21)
 -- give birth 
 turtle.place()
-c = peripheral.wrap("font")
+c = peripheral.wrap("front")
 c.turnOn()
