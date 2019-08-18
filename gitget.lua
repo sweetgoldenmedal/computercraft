@@ -16,10 +16,11 @@ local async = true
 local silent = false
 
 local preset = {
+    -- be sure to set the gituser and gitrepo values in ComputerCraft.cfg
     -- The GitHub account name
-    user = "sweetgoldenmedal",
+    user = settings.get("gituser"),
     -- The GitHub repository name
-    repo = "computercraft",
+    repo = settings.get("gitrepo"),
 
     -- The branch or commit tree to download (defaults to 'master')
     branch = nil,
