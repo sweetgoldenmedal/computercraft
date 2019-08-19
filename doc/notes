@@ -35,3 +35,10 @@ The child turtle can find its own ID by calling
 os.getComputerID()
 
 This should allow the parent turtle to pass the coordinates of the child turtle up to CC and then CC can inform the new turtle of its location
+
+
+--
+variables can be passed to all turtles by appending them to config/ComputerCraft.cfg
+e.g.
+S:default_computer_settings=api.cchost=xxx.xxx.xxx.xxx,gituser=username,gitrepo=reponame
+They can then be accessed by computers using settings.get("api.cchost")
