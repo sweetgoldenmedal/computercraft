@@ -44,3 +44,4 @@ S:default_computer_settings=api.cchost=xxx.xxx.xxx.xxx,gituser=username,gitrepo=
 They can then be accessed by computers using settings.get("api.cchost")
 
 test1
+test2
