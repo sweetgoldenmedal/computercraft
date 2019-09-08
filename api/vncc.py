@@ -15,6 +15,7 @@ from urlparse import parse_qs
 import json
 import psycopg2
 
+# commands: move_to, update_coordinates, dig_block, place_block, detect_block, place_turtle
 
 def vncc(environ, start_response):
         return_json = {}
