@@ -20,10 +20,10 @@ local preset = {
     -- The GitHub account name
     -- settings are not supported in the computercraft version included in tekkit legends
     -- user = settings.get("gituser"),
-    user = "sweetgoldenmedal"
+    user = "sweetgoldenmedal",
     -- The GitHub repository name
     ---repo = settings.get("gitrepo"),
-    repo = "computercraft"
+    repo = "computercraft",
 
     -- The branch or commit tree to download (defaults to 'master')
     branch = nil,
