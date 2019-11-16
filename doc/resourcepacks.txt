@@ -1,0 +1,13 @@
+ref: 
+http://www.computercraft.info/forums2/index.php?/topic/14049-how-to-make-and-install-lua-resource-packs/
+
+
+the files in computercraft/resourcepacks can be used to create a serverside resource pack.
+The directory hierarchy as well as the contents of pack.mcmeta must be just so.
+
+To deploy the resourcepack to the server zip up from within the resourcepacks dir:
+zip -r resourcepackfile.zip *
+
+And then copy the resulting .zip file to the resourcepacks folder within the server root (may need to create this folder).
+Given how difficult it is to update the resourcepack I have set mine up to always call gitget.lua followed by calling the bootstrap_turtle.lua script.
+This will ensure the latest code is always deployed to the turtle and will also allow updated startup commands to be passed to the turtle without having to redploy the resourcepack
