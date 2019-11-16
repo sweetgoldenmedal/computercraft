@@ -40,5 +40,5 @@ This should allow the parent turtle to pass the coordinates of the child turtle 
 --
 variables can be passed to all turtles by appending them to config/ComputerCraft.cfg
 e.g.
-S:default_computer_settings=api.cchost=xxx.xxx.xxx.xxx,gituser=username,gitrepo=reponame
+S:default_computer_settings="api.cchost=xxx.xxx.xxx.xxx,gituser=username,gitrepo=reponame"
 They can then be accessed by computers using settings.get("api.cchost")
